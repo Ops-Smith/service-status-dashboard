@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Status Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div>
+        <p class="eyebrow">DevOps Lab</p>
+        <h1>Service Status Dashboard</h1>
+        <p class="subtitle">Monitor application services and their current operational status.</p>
+      </div>
+      <button id="refresh-btn" class="secondary-btn">Refresh</button>
+    </header>
+
+    <section class="summary">
+      <div class="summary-card">
+        <span id="total-count">0</span>
+        <small>Total Services</small>
+      </div>
+      <div class="summary-card">
+        <span id="healthy-count">0</span>
+        <small>Healthy</small>
+      </div>
+      <div class="summary-card">
+        <span id="degraded-count">0</span>
+        <small>Degraded</small>
+      </div>
+      <div class="summary-card">
+        <span id="down-count">0</span>
+        <small>Down</small>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Services</h2>
+          <p>Service inventory stored in MongoDB Atlas.</p>
+        </div>
+        <span id="last-updated">Not loaded</span>
+      </div>
+
+      <div id="message" class="message"></div>
+      <div id="loading" class="loading">Loading services...</div>
+      <div id="service-list" class="service-list"></div>
+      <div id="empty-state" class="empty-state">No services have been registered.</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Register Service</h2>
+          <p>Add a service to the monitoring inventory.</p>
+        </div>
+      </div>
+
+      <form id="service-form" class="service-form">
+        <input id="name" type="text" placeholder="Service name" maxlength="100" required>
+        <input id="environment" type="text" placeholder="Environment e.g. production" maxlength="50" required>
+        <input id="url" type="url" placeholder="Service URL e.g. https://example.com" required>
+        <select id="status" required>
+          <option value="healthy">Healthy</option>
+          <option value="degraded">Degraded</option>
+          <option value="down">Down</option>
+        </select>
+        <button type="submit" class="primary-btn">Add Service</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
